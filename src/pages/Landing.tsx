@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Brain, Users, BarChart3, Shield, BookOpen, Building2, GraduationCap } from "lucide-react";
+import { ArrowRight, Brain, Users, BarChart3, Shield, BookOpen, Building2, GraduationCap, Sparkles, Eye, Clock, UserCheck, Zap, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,28 +9,32 @@ const Landing = () => {
 
   const features = [
     {
-      icon: Brain,
-      title: "AI-Powered Evaluation",
-      description: "Linear Law-based Feature Transformation with Sentiment Analysis for accurate intern assessment",
-      badge: "AI"
+      icon: Zap,
+      title: "Revolutionary AI Technology",
+      description: "Linear Law-based Feature Transformation (LLT) with Sentiment Analysis provides unparalleled accuracy in intern evaluation and performance prediction",
+      badge: "AI Core",
+      gradient: "bg-gradient-ai"
     },
     {
       icon: Users,
-      title: "Multi-Role Management",
-      description: "Seamless coordination between students, advisors, and company supervisors",
-      badge: "Collaboration"
+      title: "Multi-Stakeholder Platform",
+      description: "Seamless coordination between students, university advisors, and company supervisors with role-specific dashboards and workflows",
+      badge: "Collaboration",
+      gradient: "bg-gradient-primary"
     },
     {
       icon: BarChart3,
       title: "Real-Time Analytics",
-      description: "Comprehensive dashboards with progress tracking and performance insights",
-      badge: "Analytics"
+      description: "Comprehensive dashboards with live progress tracking, performance insights, and predictive analytics for informed decision-making",
+      badge: "Analytics",
+      gradient: "bg-gradient-primary"
     },
     {
       icon: Shield,
-      title: "Secure & Reliable",
-      description: "Enterprise-grade security with role-based access control",
-      badge: "Security"
+      title: "Secure & Compliant",
+      description: "Enterprise-grade security with academic standards compliance, FERPA compliance, and robust role-based access control",
+      badge: "Security",
+      gradient: "bg-gradient-ai"
     }
   ];
 
@@ -69,34 +73,83 @@ const Landing = () => {
             </div>
             <span className="text-xl font-bold text-foreground">InternConnect</span>
           </div>
+          
+          {/* Navigation Menu */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About</a>
+            <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">Features</a>
+            <a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors">Pricing</a>
+            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a>
+          </nav>
+          
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm">Sign In</Button>
+            <Button variant="ghost" size="sm">Login</Button>
             <Button size="sm" className="bg-gradient-primary hover:opacity-90">Get Started</Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background via-primary/5 to-ai/10">
-        <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-6 bg-ai/10 text-ai border-ai/20">
-            AI-Powered Internship Management
+      <section className="py-20 px-4 bg-gradient-to-br from-background via-primary/5 to-ai/10 relative overflow-hidden">
+        {/* Background geometric pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-32 h-32 border border-primary/20 rounded-full"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 bg-ai/10 rounded-lg rotate-45"></div>
+          <div className="absolute bottom-32 left-1/4 w-16 h-16 border-2 border-ai/20 rotate-12"></div>
+        </div>
+        
+        <div className="container mx-auto text-center max-w-4xl relative">
+          <Badge className="mb-6 bg-gradient-ai text-white border-0 px-4 py-2 text-sm font-medium animate-pulse">
+            <Sparkles className="w-4 h-4 mr-2" />
+            LINEAR LAW-BASED TRANSFORMATION + SENTIMENT ANALYSIS
           </Badge>
-          <h1 className="text-5xl font-bold text-foreground mb-6 bg-gradient-to-r from-primary to-ai bg-clip-text text-transparent">
-            Bridge Universities & Industry with AI
+          <h1 className="text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-primary to-ai bg-clip-text text-transparent leading-tight">
+            AI-Powered University-Industry Bridge
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            InternConnect revolutionizes internship management through Linear Law-based Feature Transformation 
-            and advanced sentiment analysis, creating seamless connections between students, advisors, and supervisors.
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+            Streamline internship management with intelligent evaluation and seamless collaboration 
+            between students, advisors, and companies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant">
-              Start Your Journey
-              <ArrowRight className="ml-2 w-4 h-4" />
+            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
+              Get Started
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="border-primary/20 hover:bg-primary/5">
+            <Button size="lg" variant="outline" className="border-primary/20 hover:bg-primary/5 group">
+              <Eye className="mr-2 w-4 h-4" />
               Watch Demo
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 px-4 -mt-10 relative z-10">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <Card className="bg-gradient-primary text-white border-0 hover:scale-105 transition-transform duration-300">
+              <CardContent className="text-center p-8">
+                <div className="text-4xl font-bold mb-2">95%</div>
+                <div className="text-lg opacity-90">Evaluation Accuracy</div>
+                <p className="text-sm opacity-80 mt-2">AI-powered precision in intern assessment</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-ai text-white border-0 hover:scale-105 transition-transform duration-300">
+              <CardContent className="text-center p-8">
+                <div className="text-4xl font-bold mb-2">80%</div>
+                <div className="text-lg opacity-90">Time Savings for Advisors</div>
+                <p className="text-sm opacity-80 mt-2">Automated workflows and evaluations</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-success to-success/80 text-white border-0 hover:scale-105 transition-transform duration-300">
+              <CardContent className="text-center p-8">
+                <div className="text-4xl font-bold mb-2">500+</div>
+                <div className="text-lg opacity-90">Students Successfully Placed</div>
+                <p className="text-sm opacity-80 mt-2">Connecting talent with opportunities</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -105,30 +158,29 @@ const Landing = () => {
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
               Intelligent Internship Management
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience the future of internship coordination with our AI-powered platform
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Experience the future of internship coordination with our revolutionary AI-powered platform 
+              that transforms how universities and industry collaborate.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-elegant transition-all duration-300 border-border/50">
+              <Card key={index} className="hover:shadow-elegant transition-all duration-300 border-border/50 group hover:scale-105">
                 <CardHeader className="text-center">
-                  <div className={`w-12 h-12 mx-auto rounded-xl flex items-center justify-center ${
-                    feature.badge === "AI" ? "bg-gradient-ai" : "bg-gradient-primary"
-                  } mb-4`}>
-                    <feature.icon className="w-6 h-6 text-white" />
+                  <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center ${feature.gradient} mb-4 group-hover:scale-110 transition-transform`}>
+                    <feature.icon className="w-8 h-8 text-white" />
                   </div>
-                  <Badge variant="outline" className="w-fit mx-auto mb-2">
+                  <Badge variant="outline" className="w-fit mx-auto mb-3 border-primary/20">
                     {feature.badge}
                   </Badge>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-center leading-relaxed">
+                  <CardDescription className="text-center leading-relaxed text-sm">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
