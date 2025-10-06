@@ -13,13 +13,17 @@ import {
   Zap,
   Mic,
   Send,
-  CheckCircle2
+  CheckCircle2,
+  Users
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
+import { BottomNavigation } from "@/components/mobile/BottomNavigation";
+import { MobileHeader } from "@/components/mobile/MobileHeader";
+import { SwipeableInternCard } from "@/components/mobile/SwipeableInternCard";
 
 const SupervisorDashboard = () => {
   const [evaluationText, setEvaluationText] = useState("");
@@ -79,8 +83,10 @@ const SupervisorDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+      {/* Desktop View */}
+      <div className="hidden lg:block">
+        {/* Header */}
+        <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="w-10 h-10 bg-gradient-hero rounded-lg flex items-center justify-center">
@@ -376,6 +382,151 @@ const SupervisorDashboard = () => {
             </Button>
           </div>
         </main>
+      </div>
+      </div>
+
+      {/* Mobile View */}
+      <div className="lg:hidden">
+        {/* Mobile Header */}
+        <MobileHeader 
+          title="TechCorp Solutions"
+          subtitle="Maria Santos • Supervisor"
+          logo={
+            <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
+              <Building2 className="w-5 h-5 text-white" />
+            </div>
+          }
+        />
+
+        {/* AI Smart Badge */}
+        <div className="px-4 py-3 bg-gradient-to-r from-ai/10 to-purple-500/10 border-b border-ai/20">
+          <div className="flex items-center justify-between">
+            <Badge className="bg-gradient-ai text-white border-0 px-3 py-1.5">
+              <Sparkles className="w-4 h-4 mr-2" />
+              SMART EVALUATION ENABLED
+            </Badge>
+            <span className="text-sm font-medium text-ai">AI Powered</span>
+          </div>
+        </div>
+
+        {/* Mobile Content */}
+        <div className="p-4 pb-20 space-y-4">
+          {/* Intern Counter Card */}
+          <Card className="bg-gradient-to-br from-primary/10 to-blue-500/10 border-primary/20">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-foreground">{interns.length}</p>
+                    <p className="text-sm text-muted-foreground">Active Interns</p>
+                  </div>
+                </div>
+                <Button size="sm" className="bg-primary">
+                  <FileText className="w-4 h-4 mr-2" />
+                  View All
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Swipeable Intern Cards */}
+          <div>
+            <h2 className="text-lg font-semibold text-foreground mb-3 px-1">
+              My Interns
+            </h2>
+            <div className="space-y-3">
+              {interns.map((intern) => (
+                <SwipeableInternCard
+                  key={intern.id}
+                  intern={intern}
+                  isSelected={selectedIntern === intern.id}
+                  onSelect={setSelectedIntern}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Evaluate Button */}
+          {selectedInternData && (
+            <Card className="bg-gradient-to-br from-success/10 to-success/5 border-success/30">
+              <CardContent className="p-4">
+                <div className="text-center space-y-3">
+                  <p className="text-sm text-muted-foreground">
+                    Selected: <span className="font-semibold text-foreground">{selectedInternData.name}</span>
+                  </p>
+                  <Button className="w-full bg-gradient-primary hover:opacity-90 h-12">
+                    <Brain className="w-5 h-5 mr-2" />
+                    Quick Evaluate
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Voice Evaluation Feature */}
+          <Card className="bg-gradient-to-br from-ai/5 to-purple-500/5 border-ai/20">
+            <CardHeader className="pb-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 rounded-lg bg-gradient-ai flex items-center justify-center">
+                  <Mic className="w-4 h-4 text-white" />
+                </div>
+                <CardTitle className="text-base text-ai">Voice Evaluation</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                Tap to start voice recording for quick evaluation
+              </p>
+              <Button 
+                variant="outline" 
+                className="w-full border-ai/30 text-ai hover:bg-ai/10 h-12"
+              >
+                <Mic className="w-5 h-5 mr-2" />
+                Start Voice Input
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* AI Assistant Card */}
+          <Card className="bg-gradient-to-br from-purple-500/10 to-ai/10 border-purple-500/20">
+            <CardContent className="p-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-ai flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-8 h-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-foreground mb-1">AI Assistant</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Get smart prompts and automated analysis for fair evaluations
+                  </p>
+                  <div className="flex items-center space-x-2 text-xs text-ai">
+                    <Sparkles className="w-4 h-4" />
+                    <span className="font-medium">LLT + Sentiment Analysis</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Historical Performance Stats - Mobile */}
+          <div className="grid grid-cols-3 gap-3">
+            {performanceStats.map((stat, index) => (
+              <Card key={index}>
+                <CardContent className="p-3">
+                  <stat.icon className={`w-5 h-5 ${stat.color} mb-2`} />
+                  <p className="text-lg font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground leading-tight">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Navigation */}
+        <BottomNavigation type="supervisor" />
       </div>
     </div>
   );
