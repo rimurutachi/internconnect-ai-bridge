@@ -60,6 +60,10 @@ export default {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
         },
+        neutral: {
+          DEFAULT: "hsl(var(--neutral))",
+          foreground: "hsl(var(--neutral-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -76,11 +80,20 @@ export default {
         'gradient-ai': 'var(--gradient-ai)',
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-card': 'var(--gradient-card)',
+        'gradient-success': 'var(--gradient-success)',
+        'gradient-warning': 'var(--gradient-warning)',
       },
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',
         'ai': 'var(--shadow-ai)',
         'card': 'var(--shadow-card)',
+        'hover': 'var(--shadow-hover)',
+      },
+      fontWeight: {
+        'heading': 'var(--font-heading)',
+        'body': 'var(--font-body)',
+        'medium': 'var(--font-medium)',
+        'semibold': 'var(--font-semibold)',
       },
       transitionProperty: {
         'smooth': 'var(--transition-smooth)',
