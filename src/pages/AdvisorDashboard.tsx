@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AdvisorAnalytics } from "@/components/analytics/AdvisorAnalytics";
 
 const AdvisorDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -376,12 +377,7 @@ const AdvisorDashboard = () => {
           </TabsContent>
 
           <TabsContent value="analytics">
-            <Card>
-              <CardContent className="py-12 text-center">
-                <BarChart3 className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                <p className="text-muted-foreground">Analytics view coming soon...</p>
-              </CardContent>
-            </Card>
+            <AdvisorAnalytics />
           </TabsContent>
 
           <TabsContent value="settings">

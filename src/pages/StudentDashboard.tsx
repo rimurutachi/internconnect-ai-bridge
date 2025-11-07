@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StudentSidebar } from "@/components/student/StudentSidebar";
 import { StudentHeader } from "@/components/student/StudentHeader";
 import { CurrentInternshipCard } from "@/components/student/CurrentInternshipCard";
@@ -8,11 +9,15 @@ import { AIInsightsCard, RecentMessagesCard, UpcomingDeadlinesCard } from "@/com
 import { BottomNavigation } from "@/components/mobile/BottomNavigation";
 import { MobileHeader } from "@/components/mobile/MobileHeader";
 import { QuickActionGrid } from "@/components/mobile/QuickActionGrid";
+import { StudentAnalytics } from "@/components/analytics/StudentAnalytics";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ClipboardList, MessageSquare, BarChart3, FileText } from "lucide-react";
 
 const StudentDashboard = () => {
+  const [activeTab, setActiveTab] = useState("dashboard");
+  
   const quickActions = [
     { icon: ClipboardList, label: "Tasks", color: "bg-primary" },
     { icon: MessageSquare, label: "Chat", color: "bg-blue-500" },
@@ -34,29 +39,42 @@ const StudentDashboard = () => {
           
           {/* Dashboard Content */}
           <div className="flex-1 p-6">
-            <div className="grid lg:grid-cols-4 gap-6">
-              {/* Main Content Area */}
-              <div className="lg:col-span-3 space-y-6">
-                {/* Current Internship Card */}
-                <CurrentInternshipCard />
-                
-                {/* Two Column Layout for Cards */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <EvaluationsCard />
-                  <SkillsAssessmentCard />
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="bg-muted mb-6">
+                <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="dashboard">
+                <div className="grid lg:grid-cols-4 gap-6">
+                  {/* Main Content Area */}
+                  <div className="lg:col-span-3 space-y-6">
+                    {/* Current Internship Card */}
+                    <CurrentInternshipCard />
+                    
+                    {/* Two Column Layout for Cards */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <EvaluationsCard />
+                      <SkillsAssessmentCard />
+                    </div>
+                    
+                    {/* Quick Actions */}
+                    <QuickActionsCard />
+                  </div>
+                  
+                  {/* Right Sidebar */}
+                  <div className="space-y-6">
+                    <AIInsightsCard />
+                    <RecentMessagesCard />
+                    <UpcomingDeadlinesCard />
+                  </div>
                 </div>
-                
-                {/* Quick Actions */}
-                <QuickActionsCard />
-              </div>
-              
-              {/* Right Sidebar */}
-              <div className="space-y-6">
-                <AIInsightsCard />
-                <RecentMessagesCard />
-                <UpcomingDeadlinesCard />
-              </div>
-            </div>
+              </TabsContent>
+
+              <TabsContent value="analytics">
+                <StudentAnalytics />
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
